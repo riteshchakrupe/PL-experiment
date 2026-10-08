@@ -1,5 +1,8 @@
+
+    
 #include<iostream>
 #include<string>
+
 using namespace std;
 
 // Base class for Single Inheritance
@@ -9,92 +12,79 @@ protected:
     int age;
 
 public:
-    void setPerson(string n, int a) {
-        name = n;
-        age = a;
+    void getPersonDetails() {
+        cout << "Enter Name: ";
+        cin >> name;
+        cout << "Enter Age: ";
+        cin >> age;
     }
 
-    void displayPerson() {
-        cout << "Name: " << name <<        "\nAge: " << age << endl;
+    void displayPersonDetails() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
     }
 };
 
 // Derived class for Single Inheritance
 class Student : public Person {
-    int rollNo;
-    float marks;
+private:
+    int rollNumber;
+    float percentage;
 
 public:
-    void setStudent(string n, int a, int r, float m) {
-        setPerson(n, a);
-        rollNo = r;
-        marks = m;
+    void getStudentDetails() {
+        getPersonDetails();
+        cout << "Enter Roll Number: ";
+        cin >> rollNumber;
+        cout << "Enter Percentage: ";
+        cin >> percentage;
     }
 
-    void displayStudent() {
-        cout << "\n--- Single Inheritance (Student) ---" << endl;
-        displayPerson();
-        cout << "Roll No: " << rollNo << "\nMarks: " << marks << endl;
+    void displayStudentDetails() {
+        cout << "\n--- Student Details (Single Inheritance) ---" << endl;
+        displayPersonDetails();
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Percentage: " << percentage << "%" << endl;
     }
 };
 
-// Base class 1 for Multilevel Inheritance
+// Base class for Multilevel Inheritance
 class Vehicle {
-protected:
-    string brand;
-
 public:
-    void setVehicle(string b) {
-        brand = b;
-    }
-
-    void displayVehicle() {
-        cout << "Brand: " << brand << endl;
+    void vehicleType() {
+        cout << "This is a Vehicle." << endl;
     }
 };
 
-// Intermediate class for Multilevel Inheritance
+// Intermediate derived class for Multilevel Inheritance
 class Car : public Vehicle {
-protected:
-    int seats;
-
 public:
-    void setCar(string b, int s) {
-        setVehicle(b);
-        seats = s;
-    }
-
-    void displayCar() {
-        displayVehicle();
-        cout << "Seats: " << seats << endl;
+    void carType() {
+        cout << "This vehicle is a Car." << endl;
     }
 };
 
 // Further derived class for Multilevel Inheritance
-class SuperCar : public Car {
-    int topSpeed;
-
+class ElectricCar : public Car {
 public:
-    void setSuperCar(string b, int s, int speed) {
-        setCar(b, s);
-        topSpeed = speed;
-    }
-
-    void displaySuperCar() {
-        cout << "\n--- Multilevel Inheritance (SuperCar) ---" << endl;
-        displayCar();
-        cout << "Top Speed: " << topSpeed << " km/h" << endl;
+    void electricCarType() {
+        cout << "This car is an Electric Car." << endl;
     }
 };
 
 int main() {
+    // Demonstration of Single Inheritance (Person -> Student)[span_0](start_span)[span_0](end_span)
+    cout << "=== Single Inheritance Demonstration ===" << endl;
     Student s;
-    s.setStudent("Alice", 20, 101, 92.5);
-    s.displayStudent();
+    s.getStudentDetails();
+    s.displayStudentDetails();
 
-    SuperCar sc;
-    sc.setSuperCar("Lamborghini", 2, 350);
-    sc.displaySuperCar();
+    cout << "\n=== Multilevel Inheritance Demonstration ===" << endl;
+    // Demonstration of Multilevel Inheritance (Vehicle -> Car -> ElectricCar)[span_1](start_span)[span_1](end_span)
+    ElectricCar myTesla;
+    myTesla.vehicleType();
+    myTesla.carType();
+    myTesla.electricCarType();
 
     return 0;
 }

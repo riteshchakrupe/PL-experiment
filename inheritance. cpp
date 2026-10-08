@@ -1,0 +1,100 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+// Base class for Single Inheritance
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    void setPerson(string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void displayPerson() {
+        cout << "Name: " << name <<        "\nAge: " << age << endl;
+    }
+};
+
+// Derived class for Single Inheritance
+class Student : public Person {
+    int rollNo;
+    float marks;
+
+public:
+    void setStudent(string n, int a, int r, float m) {
+        setPerson(n, a);
+        rollNo = r;
+        marks = m;
+    }
+
+    void displayStudent() {
+        cout << "\n--- Single Inheritance (Student) ---" << endl;
+        displayPerson();
+        cout << "Roll No: " << rollNo << "\nMarks: " << marks << endl;
+    }
+};
+
+// Base class 1 for Multilevel Inheritance
+class Vehicle {
+protected:
+    string brand;
+
+public:
+    void setVehicle(string b) {
+        brand = b;
+    }
+
+    void displayVehicle() {
+        cout << "Brand: " << brand << endl;
+    }
+};
+
+// Intermediate class for Multilevel Inheritance
+class Car : public Vehicle {
+protected:
+    int seats;
+
+public:
+    void setCar(string b, int s) {
+        setVehicle(b);
+        seats = s;
+    }
+
+    void displayCar() {
+        displayVehicle();
+        cout << "Seats: " << seats << endl;
+    }
+};
+
+// Further derived class for Multilevel Inheritance
+class SuperCar : public Car {
+    int topSpeed;
+
+public:
+    void setSuperCar(string b, int s, int speed) {
+        setCar(b, s);
+        topSpeed = speed;
+    }
+
+    void displaySuperCar() {
+        cout << "\n--- Multilevel Inheritance (SuperCar) ---" << endl;
+        displayCar();
+        cout << "Top Speed: " << topSpeed << " km/h" << endl;
+    }
+};
+
+int main() {
+    Student s;
+    s.setStudent("Alice", 20, 101, 92.5);
+    s.displayStudent();
+
+    SuperCar sc;
+    sc.setSuperCar("Lamborghini", 2, 350);
+    sc.displaySuperCar();
+
+    return 0;
+}
